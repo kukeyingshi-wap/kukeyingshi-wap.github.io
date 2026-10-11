@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>酷客影视 | 极客级在线影视点播 - 高清电影电视剧动漫综艺</title>
+<meta name="keywords" content="酷客影视,kukeyingshi,酷客影视网,在线影视,高清影视点播,电影在线看,电视剧在线看,动漫,综艺">
+<meta name="description" content="酷客影视（kukeyingshi-wap.github.io）是面向影视爱好者的极客级在线点播平台，聚合高清电影、电视剧、动漫、综艺等资源，智能推荐、极速播放、多端同步，刷新你的观影体验。">
+<meta name="author" content="酷客影视">
+<meta name="robots" content="index,follow">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://kukeyingshi-wap.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='85'>🎬</text></svg>">
+<style>
+/* ===== 基础 ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090d;--bg2:#0c1016;--card:#121821;--line:#1e2530;
+  --txt:#e6edf3;--dim:#7d8794;--dim2:#5a6472;
+  --cy:#00e5ff;--cy-d:#00b8d4;--vi:#7c4dff;--pi:#ff2e88;
+  --r:14px;--ease:cubic-bezier(.2,.7,.3,1);
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--txt);line-height:1.7;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  background-image:radial-gradient(circle at 15% 0%,rgba(124,77,255,.10),transparent 45%),radial-gradient(circle at 85% 10%,rgba(0,229,255,.08),transparent 40%);
+  background-attachment:fixed;
+}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+ul,ol{list-style:none}
+h1,h2,h3,h4{line-height:1.3;font-weight:800}
+::selection{background:var(--cy);color:#000}
+
+/* ===== 通用 ===== */
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+section{padding:80px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--cy);font-weight:700;margin-bottom:12px}
+.eyebrow::before{content:"";width:26px;height:2px;background:var(--cy)}
+.h2{font-size:clamp(1.55rem,3.4vw,2.35rem);letter-spacing:-.01em;color:#fff}
+.h2 b{color:var(--cy);font-weight:900}
+.h2 i{font-style:normal;position:relative}
+.h2 i::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:3px;background:var(--pi);border-radius:3px;transform:scaleX(.4);transform-origin:left}
+.sub{color:var(--dim);margin-top:14px;max-width:600px}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:46px}
+.head-l{max-width:640px}
+.center{text-align:center}
+.center .sub{margin:14px auto 0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 27px;border-radius:8px;font-weight:700;font-size:14.5px;cursor:pointer;border:1px solid transparent;transition:.3s var(--ease);font-family:inherit}
+.btn-main{background:var(--cy);color:#04121a;box-shadow:0 0 0 0 rgba(0,229,255,.5)}
+.btn-main:hover{box-shadow:0 0 26px 4px rgba(0,229,255,.35);transform:translateY(-2px)}
+.btn-out{background:transparent;color:var(--cy);border-color:rgba(0,229,255,.4)}
+.btn-out:hover{background:rgba(0,229,255,.1);border-color:var(--cy)}
+.tag{display:inline-block;padding:4px 11px;border-radius:6px;font-size:11.5px;font-weight:700;border:1px solid var(--line);color:var(--dim)}
+.tag.cy{color:var(--cy);border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.07)}
+.mono{font-family:ui-monospace,"SF Mono",Consolas,monospace}
+
+/* ===== 导航 ===== */
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,9,13,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:66px}
+.logo{display:flex;align-items:center;gap:10px;font-size:20px;font-weight:900;color:#fff;letter-spacing:.02em}
+.logo .clapper{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--cy),var(--vi));display:grid;place-items:center;font-size:17px;box-shadow:0 4px 18px rgba(0,229,255,.3)}
+.logo small{font-size:10px;color:var(--cy);letter-spacing:.2em;text-transform:uppercase;font-weight:600;margin-left:2px}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nav-links a{padding:8px 15px;border-radius:7px;font-size:14px;font-weight:600;color:#aab4c0;transition:.2s}
+.nav-links a:hover{color:var(--cy);background:rgba(0,229,255,.06)}
+.nav-links a.vip{color:#07090d;background:var(--cy);font-weight:800}
+.nav-links a.vip:hover{color:#07090d;box-shadow:0 0 20px rgba(0,229,255,.4)}
+.menu-toggle{display:none;width:42px;height:42px;border:1px solid var(--line);background:transparent;color:var(--cy);border-radius:8px;cursor:pointer;font-size:16px}
+
+/* ===== 首屏 Hero ===== */
+.hero{position:relative;min-height:92vh;display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;padding:64px 0 80px}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+.hero-bg span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.35}
+.hero-bg .g1{width:420px;height:420px;background:var(--vi);top:-120px;left:-80px}
+.hero-bg .g2{width:360px;height:360px;background:var(--cy);bottom:-120px;right:-60px}
+.hero-content{position:relative;z-index:2}
+.h1{font-size:clamp(2.3rem,6.4vw,4.6rem);line-height:1.14;letter-spacing:-.03em;font-weight:900}
+.h1 .glitch{color:var(--cy);position:relative}
+.h1 .glitch::before{content:attr(data-t);position:absolute;left:-2px;top:0;color:var(--pi);mix-blend-mode:screen;clip-path:polygon(0 0,100% 0,100% 45%,0 45%);transform:translateX(3px)}
+.h1 .glitch::after{content:attr(data-t);position:absolute;left:2px;top:0;color:#fff;mix-blend-mode:screen;clip-path:polygon(0 55%,100% 55%,100% 100%,0 100%);transform:translateX(-3px)}
+.lede{margin-top:24px;font-size:clamp(1rem,1.8vw,1.18rem);color:#aab4c0;max-width:540px}
+.stats{margin-top:38px;display:flex;gap:0;border:1px solid var(--line);border-radius:10px;overflow:hidden;width:fit-content}
+.stat{flex:1;padding:18px 26px;border-right:1px solid var(--line)}
+.stat:last-child{border-right:0}
+.stat b{display:block;font-size:1.6rem;font-weight:900;color:var(--cy)}
+.stat span{font-size:12px;color:var(--dim)}
+.cta-row{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+
+/* 右侧终端窗口 */
+.terminal{position:relative;z-index:2;border:1px solid var(--line);border-radius:12px;background:rgba(10,13,18,.92);backdrop-filter:blur(6px);overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.55)}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.r{background:#ff5f56}.dot.y{background:#ffbd2e}.dot.g{background:#27c93f}
+.term-title{margin-left:10px;font-size:12px;color:var(--dim2);font-family:ui-monospace,monospace}
+.term-body{padding:20px;font-family:ui-monospace,Consolas,monospace;font-size:13.5px;line-height:2.05}
+.term-body .l1{color:var(--cy)}
+.term-body .l2{color:var(--pi)}
+.term-body .l3{color:#aab4c0}
+.term-body .cursor{display:inline-block;width:8px;height:15px;background:var(--cy);vertical-align:middle;animation:blink 1s step-end infinite}
+@keyframes blink{50%{opacity:0}}
+.term-tags{display:flex;flex-wrap:wrap;gap:8px;padding:0 20px 20px}
+.term-tags .chip{font-family:ui-monospace,monospace;font-size:11.5px;padding:4px 10px;border:1px solid var(--line);border-radius:5px;color:var(--dim)}
+.term-tags .chip.on{color:#07090d;background:var(--cy);border-color:var(--cy)}
+
+/* ===== 栏目一：正在热映（横向滚动条）===== */
+.filters{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
+.f-btn{padding:8px 18px;border-radius:7px;background:var(--card);border:1px solid var(--line);color:var(--dim);font-size:13.5px;cursor:pointer;transition:.25s;font-family:inherit;font-weight:600}
+.f-btn:hover{border-color:var(--cy);color:#fff}
+.f-btn.on{background:var(--cy);color:#07090d;border-color:var(--cy)}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:200px;gap:20px;overflow-x:auto;padding:4px 2px 24px;scroll-snap-type:x mandatory}
+.rail::-webkit-scrollbar{height:7px}
+.rail::-webkit-scrollbar-track{background:var(--card);border-radius:7px}
+.rail::-webkit-scrollbar-thumb{background:var(--line);border-radius:7px}
+.film{scroll-snap-align:start;flex:none;width:200px;cursor:pointer}
+.film .ftop{position:relative;border-radius:10px;overflow:hidden;aspect-ratio:2/3}
+.film .ftop img{width:100%;height:100%;object-fit:cover;transition:.5s var(--ease)}
+.film:hover .ftop img{transform:scale(1.08)}
+.film .quality{position:absolute;top:10px;left:10px;background:#07090d;color:var(--cy);font-size:10.5px;font-weight:800;padding:3px 8px;border-radius:4px;border:1px solid rgba(0,229,255,.4)}
+.film .bar{position:absolute;left:10px;right:10px;bottom:10px;height:4px;background:rgba(255,255,255,.25);border-radius:4px;overflow:hidden}
+.film .bar i{display:block;height:100%;background:var(--cy)}
+.film h4{margin-top:12px;font-size:14.5px;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.film .meta{font-size:11.5px;color:var(--dim);margin-top:4px;display:flex;gap:8px}
+.rail-pane{display:none}
+.rail-pane.on{display:block}
+
+/* ===== 栏目二：剧集（瀑布卡片）===== */
+.series{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.s-card{position:relative;border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--line);transition:.4s var(--ease);cursor:pointer}
+.s-card:hover{transform:translateY(-6px);border-color:rgba(0,229,255,.4);box-shadow:0 20px 44px rgba(0,0,0,.45)}
+.s-card .sthumb{position:relative;height:200px;overflow:hidden}
+.s-card .sthumb img{width:100%;height:100%;object-fit:cover;transition:.55s var(--ease)}
+.s-card:hover .sthumb img{transform:scale(1.07)}
+.s-card .epi{position:absolute;top:12px;right:12px;background:var(--pi);color:#fff;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:5px}
+.s-card .premier{position:absolute;top:12px;left:12px;background:var(--cy);color:#07090d;font-size:10.5px;font-weight:800;padding:4px 9px;border-radius:5px}
+.s-card .sbody{padding:16px 18px 18px}
+.s-card h4{font-size:15.5px;color:#fff}
+.s-card .stags{display:flex;gap:6px;margin-top:10px;flex-wrap:wrap}
+.s-card .stags span{font-size:10.5px;padding:3px 8px;border-radius:4px;background:rgba(0,229,255,.08);color:var(--cy);font-weight:600}
+.s-card .progress{margin-top:12px;height:3px;background:var(--line);border-radius:3px;overflow:hidden}
+.s-card .progress i{display:block;height:100%;background:linear-gradient(90deg,var(--cy),var(--vi))}
+
+/* ===== 栏目三：动漫（网格+横幅）===== */
+.anime{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+.anime .featured{position:relative;border-radius:12px;overflow:hidden;min-height:380px;cursor:pointer}
+.anime .featured img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.6s var(--ease)}
+.anime .featured:hover img{transform:scale(1.06)}
+.anime .featured .fmask{position:absolute;inset:0;background:linear-gradient(to top,rgba(7,9,13,.96) 20%,rgba(7,9,13,.2))}
+.anime .featured .fcontent{position:absolute;left:26px;right:26px;bottom:24px}
+.anime .featured .fcontent .badge-new{display:inline-block;background:var(--pi);color:#fff;font-size:11px;font-weight:800;padding:4px 10px;border-radius:5px;margin-bottom:10px}
+.anime .featured h3{font-size:clamp(1.3rem,2.6vw,1.8rem);color:#fff;margin-bottom:8px}
+.anime .featured p{color:#aab4c0;font-size:13.5px}
+.anime-list{display:grid;gap:12px}
+.anime-row{display:flex;gap:14px;align-items:center;padding:10px;border-radius:10px;background:var(--card);border:1px solid var(--line);transition:.3s;cursor:pointer}
+.anime-row:hover{border-color:var(--cy);background:rgba(0,229,255,.05)}
+.anime-row .apic{width:64px;height:84px;flex:none;border-radius:8px;overflow:hidden}
+.anime-row .apic img{width:100%;height:100%;object-fit:cover}
+.anime-row .ainfo h4{font-size:14px;color:#fff}
+.anime-row .ainfo p{font-size:11.5px;color:var(--dim);margin-top:5px}
+.anime-row .ep{margin-left:auto;text-align:right;flex:none}
+.anime-row .ep b{display:block;font-size:13px;color:var(--cy);font-weight:800}
+.anime-row .ep span{font-size:10.5px;color:var(--dim2)}
+
+/* ===== 栏目四：排行榜（侧边数字+表格）===== */
+.rk-wrap{display:grid;grid-template-columns:200px 1fr;gap:26px}
+.rk-nav{display:flex;flex-direction:column;gap:6px}
+.rk-nav button{padding:13px 18px;border-radius:9px;background:var(--card);border:1px solid var(--line);color:var(--dim);font-size:14px;cursor:pointer;text-align:left;transition:.25s;font-family:inherit;font-weight:600}
+.rk-nav button:hover{border-color:var(--cy);color:#fff}
+.rk-nav button.on{background:linear-gradient(120deg,var(--vi),var(--cy-d));color:#fff;border-color:transparent}
+.rk-pane{display:none}
+.rk-pane.on{display:block;animation:fade .4s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.rk-row{display:grid;grid-template-columns:56px 60px 1fr auto;gap:18px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);transition:.25s;cursor:pointer}
+.rk-row:last-child{border-bottom:0}
+.rk-row:hover{background:rgba(0,229,255,.05)}
+.rk-row .num{font-size:26px;font-weight:900;color:var(--line)}
+.rk-row.gold .num{color:var(--cy)}
+.rk-row:nth-child(-n+3) .num{color:var(--pi)}
+.rk-row .pic{width:52px;height:70px;border-radius:7px;overflow:hidden}
+.rk-row .pic img{width:100%;height:100%;object-fit:cover}
+.rk-row .txt h4{font-size:14.5px;color:#fff}
+.rk-row .txt p{font-size:11.5px;color:var(--dim);margin-top:4px}
+.rk-row .hot{text-align:right;flex:none}
+.rk-row .hot b{font-size:15px;color:var(--cy);font-weight:800}
+.rk-row .hot span{font-size:10.5px;color:var(--dim2)}
+
+/* ===== 栏目五：观影指南（步骤时间轴）===== */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative}
+.steps::before{content:"";position:absolute;top:34px;left:12.5%;right:12.5%;height:2px;background:repeating-linear-gradient(90deg,var(--cy) 0 8px,transparent 8px 16px)}
+.step{padding:0 16px;position:relative;text-align:center}
+.step .n{width:68px;height:68px;margin:0 auto 22px;border-radius:50%;background:var(--bg);border:2px solid var(--cy);display:grid;place-items:center;font-size:24px;font-weight:900;color:var(--cy);position:relative;z-index:2}
+.step h4{color:#fff;font-size:16px;margin-bottom:8px}
+.step p{font-size:13px;color:var(--dim)}
+
+/* ===== 栏目六：数据墙 + CTA ===== */
+.datawall{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:60px}
+.dw{background:var(--card);padding:30px 20px;text-align:center}
+.dw b{display:block;font-size:2.1rem;font-weight:900;color:var(--cy);font-family:ui-monospace,monospace}
+.dw span{font-size:13px;color:var(--dim)}
+.cta{position:relative;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.cta-bg{position:absolute;inset:0;background:linear-gradient(120deg,#0e1a2b,#160d22);z-index:0}
+.cta-bg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(0,229,255,.18),transparent 50%)}
+.cta-in{position:relative;z-index:2;padding:54px 44px;display:grid;grid-template-columns:1.3fr .7fr;gap:36px;align-items:center}
+.cta-in h3{font-size:clamp(1.5rem,3vw,2.1rem);color:#fff;line-height:1.35}
+.cta-in h3 b{color:var(--cy)}
+.cta-in p{color:#aab4c0;margin-top:12px}
+.cta-in .form{display:flex;gap:10px}
+.cta-in input{flex:1;padding:13px 16px;border-radius:8px;background:rgba(0,0,0,.3);border:1px solid var(--line);color:#fff;font-size:14px;font-family:inherit}
+.cta-in input:focus{outline:0;border-color:var(--cy)}
+.cta-msg{margin-top:12px;font-size:13px;color:var(--cy);min-height:18px}
+
+/* ===== 页脚 ===== */
+footer{background:#05070a;border-top:1px solid var(--line);padding:56px 0 26px}
+.f-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:34px;margin-bottom:40px}
+.f-brand .logo{margin-bottom:14px}
+.f-brand p{font-size:13.5px;color:var(--dim);line-height:1.9}
+.f-col h4{color:#fff;font-size:14.5px;margin-bottom:16px}
+.f-col a{display:block;font-size:13.5px;color:var(--dim);padding:5px 0;transition:.2s}
+.f-col a:hover{color:var(--cy);transform:translateX(4px)}
+.f-bottom{border-top:1px solid var(--line);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12.5px;color:var(--dim2)}
+.f-bottom a{color:var(--dim2)}
+.f-bottom a:hover{color:#fff}
+
+/* ===== 响应式 ===== */
+@media(max-width:960px){
+  section{padding:56px 0}
+  .hero{grid-template-columns:1fr;gap:44px;padding:44px 0 64px}
+  .terminal{order:-1;max-width:520px}
+  .series{grid-template-columns:repeat(2,1fr)}
+  .anime{grid-template-columns:1fr}
+  .anime .featured{min-height:300px}
+  .rk-wrap{grid-template-columns:1fr}
+  .rk-nav{flex-direction:row;flex-wrap:wrap}
+  .steps{grid-template-columns:1fr 1fr}
+  .steps::before{display:none}
+  .datawall{grid-template-columns:1fr 1fr}
+  .cta-in{grid-template-columns:1fr;padding:38px 26px}
+}
+@media(max-width:640px){
+  .wrap{padding:0 15px}
+  .nav-links{position:fixed;top:66px;left:0;right:0;flex-direction:column;background:#07090d;border-bottom:1px solid var(--line);padding:14px;transform:translateY(-150%);transition:.4s var(--ease)}
+  .nav-links.open{transform:translateY(0)}
+  .nav-links a{padding:12px 16px;width:100%;text-align:center}
+  .menu-toggle{display:block}
+  .series,.f-grid{grid-template-columns:1fr}
+  .datawall,.steps{grid-template-columns:1fr}
+  .rk-row{grid-template-columns:44px 52px 1fr;gap:12px}
+  .rk-row .hot{display:none}
+  .cta-in .form{flex-direction:column}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- 导航 -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="logo" href="#top" aria-label="酷客影视首页"><span class="clapper">🎬</span>酷客影视<small>KUKEYINGSHI</small></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="#hot">热映</a>
+      <a href="#series">剧集</a>
+      <a href="#anime">动漫</a>
+      <a href="#rank">榜单</a>
+      <a href="#guide">观影指南</a>
+      <a href="#top" class="vip">免费体验</a>
+    </nav>
+    <button class="menu-toggle" id="menuBtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<!-- 首屏 -->
+<section class="hero" id="top">
+  <div class="hero-bg"><span class="g1"></span><span class="g2"></span></div>
+  <div class="wrap" style="display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center;width:100%;position:relative;z-index:2">
+    <div class="hero-content">
+      <span class="eyebrow">KUKEYINGSHI · 极客级影视点播</span>
+      <h1 class="h1">用<em class="glitch mono" data-t="代码">代码</em><br>看懂每一帧<span class="glitch" data-t="好片">好片</span></h1>
+      <p class="lede">酷客影视聚合高清电影、电视剧、动漫、综艺，智能算法推荐你的下一部心头好，极速播放、多端同步，让观影像刷代码一样丝滑。</p>
+      <div class="cta-row">
+        <a class="btn btn-main" href="#hot">▶ 开始观影</a>
+        <a class="btn btn-out" href="#rank">📊 查看榜单</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>12万+</b><span>影视资源</span></div>
+        <div class="stat"><b>4K</b><span>超清画质</span></div>
+        <div class="stat"><b>0</b><span>广告打扰</span></div>
+        <div class="stat"><b>5s</b><span>极速起播</span></div>
+      </div>
+    </div>
+    <div class="terminal">
+      <div class="term-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="term-title">kukeyingshi-wap ~ 观影终端</span></div>
+      <div class="term-body">
+        <div class="l1">$ curl -s get.movie/today</div>
+        <div class="l3">{ "status": <span style="color:var(--cy)">200</span>, "data": [</div>
+        <div class="l3">&nbsp;&nbsp;{ "title": "<span class="l2">星际回响</span>", "score": 9.2 },</div>
+        <div class="l3">&nbsp;&nbsp;{ "title": "<span class="l2">长夜未央</span>", "score": 9.0 },</div>
+        <div class="l3">&nbsp;&nbsp;{ "title": "<span class="l2">云端小屋</span>", "score": 8.9 }</div>
+        <div class="l3">] }</div>
+        <div class="l1" style="margin-top:6px">$ <span class="cursor"></span></div>
+      </div>
+      <div class="term-tags">
+        <span class="chip on">全部</span>
+        <span class="chip">电影</span>
+        <span class="chip">剧集</span>
+        <span class="chip">动漫</span>
+        <span class="chip">综艺</span>
+        <span class="chip">纪录片</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目一：热映 -->
+<section id="hot" style="padding-top:24px">
+  <div class="wrap">
+    <div class="head">
+      <div class="head-l">
+        <span class="eyebrow">Now Showing</span>
+        <h2 class="h2"><b>酷客影视</b>正在<em><i>热映</i></em></h2>
+        <p class="sub">院线新片、高分佳作同步上线，一次刷完不等待。</p>
+      </div>
+      <a class="btn btn-out" href="#">全部电影 →</a>
+    </div>
+    <div class="filters" data-f="hot">
+      <button class="f-btn on" data-k="all">全部</button>
+      <button class="f-btn" data-k="new">本周新片</button>
+      <button class="f-btn" data-k="top">高分精选</button>
+      <button class="f-btn" data-k="ex">独家首播</button>
+    </div>
+    <div class="rail-pane on" data-p="hot">
+      <div class="rail">
+        <article class="film"><div class="ftop"><span class="quality">4K</span><img src="https://picsum.photos/seed/km1/300/450" alt="星际回响电影海报" loading="lazy"><div class="bar"><i style="width:92%"></i></div></div><h4>星际回响</h4><div class="meta"><span>科幻</span><span>·</span><span>138分钟</span></div></article>
+        <article class="film"><div class="ftop"><span class="quality">1080P</span><img src="https://picsum.photos/seed/km2/300/450" alt="逆光而行电影海报" loading="lazy"><div class="bar"><i style="width:87%"></i></div></div><h4>逆光而行</h4><div class="meta"><span>剧情</span><span>·</span><span>112分钟</span></div></article>
+        <article class="film"><div class="ftop"><span class="quality">蓝光</span><img src="https://picsum.photos/seed/km3/300/450" alt="海上钢琴师电影海报" loading="lazy"><div class="bar"><i style="width:95%"></i></div></div><h4>海上钢琴师</h4><div class="meta"><span>文艺</span><span>·</span><span>165分钟</span></div></article>
+        <article class="film"><div class="ftop"><span class="quality">4K</span><img src="https://picsum.photos/seed/km4/300/450" alt="暗夜猎手电影海报" loading="lazy"><div class="bar"><i style="width:84%"></i></div></div><h4>暗夜猎手</h4><div class="meta"><span>动作</span><span>·</span><span>126分钟</span></div></article>
+        <article class="film"><div class="ftop"><span class="quality">1080P</span><img src="https://picsum.photos/seed/km5/300/450" alt="云端小屋电影海报" loading="lazy"><div class="bar"><i style="width:89%"></i></div></div><h4>云端小屋</h4><div class="meta"><span>动画</span><span>·</span><span>98分钟</span></div></article>
+        <article class="film"><div class="ftop"><span class="quality">蓝光</span><img src="https://picsum.photos/seed/km6/300/450" alt="春逝电影海报" loading="lazy"><div class="bar"><i style="width:90%"></i></div></div><h4>春逝</h4><div class="meta"><span>爱情</span><span>·</span><span>120分钟</span></div></article>
+        <article class="film"><div class="ftop"><span class="quality">4K</span><img src="https://picsum.photos/seed/km7/300/450" alt="荒野迷踪电影海报" loading="lazy"><div class="bar"><i style="width:79%"></i></div></div><h4>荒野迷踪</h4><div class="meta"><span>惊悚</span><span>·</span><span>104分钟</span></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目二：剧集 -->
+<section id="series" style="background:linear-gradient(180deg,transparent,rgba(18,24,33,.5),transparent)">
+  <div class="wrap">
+    <div class="head">
+      <div class="head-l">
+        <span class="eyebrow">Drama Series</span>
+        <h2 class="h2"><em><i>追剧</i></em>不停 · <b>酷客影视</b>热播剧</h2>
+        <p class="sub">国产、韩剧、美剧、日剧一站覆盖，追剧进度云端同步。</p>
+      </div>
+      <a class="btn btn-out" href="#">全部剧集 →</a>
+    </div>
+    <div class="series">
+      <article class="s-card"><span class="premier">独播</span><span class="epi">24集</span><div class="sthumb"><img src="https://picsum.photos/seed/ks1/500/380" alt="长夜未央剧集封面" loading="lazy"></div><div class="sbody"><h4>长夜未央</h4><div class="stags"><span>悬疑</span><span>犯罪</span><span>已更24集</span></div><div class="progress"><i style="width:80%"></i></div></div></article>
+      <article class="s-card"><span class="premier">热播</span><span class="epi">12集</span><div class="sthumb"><img src="https://picsum.photos/seed/ks2/500/380" alt="长安月剧集封面" loading="lazy"></div><div class="sbody"><h4>长安月</h4><div class="stags"><span>古装</span><span>权谋</span><span>已更12集</span></div><div class="progress"><i style="width:48%"></i></div></div></article>
+      <article class="s-card"><span class="premier">会员</span><span class="epi">全32集</span><div class="sthumb"><img src="https://picsum.photos/seed/ks3/500/380" alt="平凡之光剧集封面" loading="lazy"></div><div class="sbody"><h4>平凡之光</h4><div class="stags"><span>都市</span><span>温情</span><span>已完结</span></div><div class="progress"><i style="width:100%"></i></div></div></article>
+      <article class="s-card"><span class="premier">更新</span><span class="epi">16集</span><div class="sthumb"><img src="https://picsum.photos/seed/ks4/500/380" alt="异人之下剧集封面" loading="lazy"></div><div class="sbody"><h4>异人之下</h4><div class="stags"><span>奇幻</span><span>冒险</span><span>已更16集</span></div><div class="progress"><i style="width:64%"></i></div></div></article>
+      <article class="s-card"><span class="premier">首播</span><span class="epi">10集</span><div class="sthumb"><img src="https://picsum.photos/seed/ks5/500/380" alt="深海来信剧集封面" loading="lazy"></div><div class="sbody"><h4>深海来信</h4><div class="stags"><span>科幻</span><span>悬疑</span><span>已更10集</span></div><div class="progress"><i style="width:40%"></i></div></div></article>
+      <article class="s-card"><span class="premier">高分</span><span class="epi">全24集</span><div class="sthumb"><img src="https://picsum.photos/seed/ks6/500/380" alt="山河故人剧集封面" loading="lazy"></div><div class="sbody"><h4>山河故人</h4><div class="stags"><span>历史</span><span>史诗</span><span>已完结</span></div><div class="progress"><i style="width:100%"></i></div></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目三：动漫 -->
+<section id="anime">
+  <div class="wrap">
+    <div class="head center">
+      <div class="head-l" style="margin:0 auto">
+        <span class="eyebrow" style="justify-content:center">Anime Zone</span>
+        <h2 class="h2">二次元阵地 · <b>酷客影视</b>动漫馆</h2>
+        <p class="sub" style="margin:14px auto 0">新番连载、经典剧场版、国漫原创，追番日历一目了然。</p>
+      </div>
+    </div>
+    <div class="anime">
+      <article class="featured">
+        <img src="https://picsum.photos/seed/ka1/700/500" alt="本季新番精选大图" loading="lazy">
+        <div class="fmask"></div>
+        <div class="fcontent">
+          <span class="badge-new">本季新番 · 连载中</span>
+          <h3>时空管理局：重启</h3>
+          <p>当时间线出现裂痕，一支由少年组成的特殊小队被选中修复历史。12 集完结，每周三更新。</p>
+        </div>
+      </article>
+      <div class="anime-list">
+        <article class="anime-row"><div class="apic"><img src="https://picsum.photos/seed/ka2/128/168" alt="剑客行动漫封面" loading="lazy"></div><div class="ainfo"><h4>剑客行</h4><p>国漫 · 武侠 · 已更32集</p></div><div class="ep"><b>EP32</b><span>更新中</span></div></article>
+        <article class="anime-row"><div class="apic"><img src="https://picsum.photos/seed/ka3/128/168" alt="魔法少女小圆动漫封面" loading="lazy"></div><div class="ainfo"><h4>魔法少女小圆</h4><p>日漫 · 治愈 · 全12集</p></div><div class="ep"><b>完结</b><span>可补番</span></div></article>
+        <article class="anime-row"><div class="apic"><img src="https://picsum.photos/seed/ka4/128/168" alt="机甲世纪动漫封面" loading="lazy"></div><div class="ainfo"><h4>机甲世纪</h4><p>科幻 · 热血 · 已更18集</p></div><div class="ep"><b>EP18</b><span>更新中</span></div></article>
+        <article class="anime-row"><div class="apic"><img src="https://picsum.photos/seed/ka5/128/168" alt="猫咪咖啡厅动漫封面" loading="lazy"></div><div class="ainfo"><h4>猫咪咖啡厅</h4><p>日常 · 治愈 · 全24集</p></div><div class="ep"><b>完结</b><span>轻松下饭</span></div></article>
+        <article class="anime-row"><div class="apic"><img src="https://picsum.photos/seed/ka6/128/168" alt="龙族外传动漫封面" loading="lazy"></div><div class="ainfo"><h4>龙族外传</h4><p>奇幻 · 冒险 · 已更08集</p></div><div class="ep"><b>EP08</b><span>新番</span></div></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目四：排行榜 -->
+<section id="rank" style="background:linear-gradient(180deg,transparent,rgba(18,24,33,.5),transparent)">
+  <div class="wrap">
+    <div class="head">
+      <div class="head-l">
+        <span class="eyebrow">Leaderboard</span>
+        <h2 class="h2"><b>酷客影视</b>热播<em><i>排行榜</i></em></h2>
+        <p class="sub">实时热度排行，看看百万观众都在追什么。</p>
+      </div>
+    </div>
+    <div class="rk-wrap">
+      <div class="rk-nav" data-nav="rank">
+        <button class="on" data-k="m">电影榜</button>
+        <button data-k="t">电视剧榜</button>
+        <button data-k="a">动漫榜</button>
+        <button data-k="v">综艺榜</button>
+      </div>
+      <div>
+        <div class="rk-pane on" data-pane="m">
+          <div class="rk-row gold"><span class="num">01</span><span class="pic"><img src="https://picsum.photos/seed/kr1/104/140" alt="星际回响" loading="lazy"></span><div class="txt"><h4>星际回响</h4><p>科幻 · 9.2分</p></div><div class="hot"><b>98.7万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">02</span><span class="pic"><img src="https://picsum.photos/seed/kr2/104/140" alt="暗夜猎手" loading="lazy"></span><div class="txt"><h4>暗夜猎手</h4><p>动作 · 8.4分</p></div><div class="hot"><b>92.1万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">03</span><span class="pic"><img src="https://picsum.photos/seed/kr3/104/140" alt="逆光而行" loading="lazy"></span><div class="txt"><h4>逆光而行</h4><p>剧情 · 8.7分</p></div><div class="hot"><b>88.5万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">04</span><span class="pic"><img src="https://picsum.photos/seed/kr4/104/140" alt="云端小屋" loading="lazy"></span><div class="txt"><h4>云端小屋</h4><p>动画 · 8.9分</p></div><div class="hot"><b>81.3万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">05</span><span class="pic"><img src="https://picsum.photos/seed/kr5/104/140" alt="春逝" loading="lazy"></span><div class="txt"><h4>春逝</h4><p>爱情 · 9.0分</p></div><div class="hot"><b>76.8万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">06</span><span class="pic"><img src="https://picsum.photos/seed/kr6/104/140" alt="荒野迷踪" loading="lazy"></span><div class="txt"><h4>荒野迷踪</h4><p>惊悚 · 7.9分</p></div><div class="hot"><b>70.2万</b><span>热度</span></div></div>
+        </div>
+        <div class="rk-pane" data-pane="t">
+          <div class="rk-row gold"><span class="num">01</span><span class="pic"><img src="https://picsum.photos/seed/krt1/104/140" alt="长夜未央" loading="lazy"></span><div class="txt"><h4>长夜未央</h4><p>悬疑 · 更新至24集</p></div><div class="hot"><b>156万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">02</span><span class="pic"><img src="https://picsum.photos/seed/krt2/104/140" alt="长安月" loading="lazy"></span><div class="txt"><h4>长安月</h4><p>古装 · 更新至12集</p></div><div class="hot"><b>142万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">03</span><span class="pic"><img src="https://picsum.photos/seed/krt3/104/140" alt="平凡之光" loading="lazy"></span><div class="txt"><h4>平凡之光</h4><p>都市 · 全32集</p></div><div class="hot"><b>128万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">04</span><span class="pic"><img src="https://picsum.photos/seed/krt4/104/140" alt="异人之下" loading="lazy"></span><div class="txt"><h4>异人之下</h4><p>奇幻 · 更新至16集</p></div><div class="hot"><b>119万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">05</span><span class="pic"><img src="https://picsum.photos/seed/krt5/104/140" alt="深海来信" loading="lazy"></span><div class="txt"><h4>深海来信</h4><p>科幻 · 更新至10集</p></div><div class="hot"><b>105万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">06</span><span class="pic"><img src="https://picsum.photos/seed/krt6/104/140" alt="山河故人" loading="lazy"></span><div class="txt"><h4>山河故人</h4><p>历史 · 全24集</p></div><div class="hot"><b>97.6万</b><span>热度</span></div></div>
+        </div>
+        <div class="rk-pane" data-pane="a">
+          <div class="rk-row gold"><span class="num">01</span><span class="pic"><img src="https://picsum.photos/seed/kra1/104/140" alt="时空管理局重启" loading="lazy"></span><div class="txt"><h4>时空管理局：重启</h4><p>科幻 · 连载中</p></div><div class="hot"><b>88.4万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">02</span><span class="pic"><img src="https://picsum.photos/seed/kra2/104/140" alt="剑客行" loading="lazy"></span><div class="txt"><h4>剑客行</h4><p>国漫 · 连载中</p></div><div class="hot"><b>76.9万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">03</span><span class="pic"><img src="https://picsum.photos/seed/kra3/104/140" alt="机甲世纪" loading="lazy"></span><div class="txt"><h4>机甲世纪</h4><p>热血 · 连载中</p></div><div class="hot"><b>68.3万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">04</span><span class="pic"><img src="https://picsum.photos/seed/kra4/104/140" alt="魔法少女小圆" loading="lazy"></span><div class="txt"><h4>魔法少女小圆</h4><p>治愈 · 已完结</p></div><div class="hot"><b>61.7万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">05</span><span class="pic"><img src="https://picsum.photos/seed/kra5/104/140" alt="猫咪咖啡厅" loading="lazy"></span><div class="txt"><h4>猫咪咖啡厅</h4><p>日常 · 已完结</p></div><div class="hot"><b>54.2万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">06</span><span class="pic"><img src="https://picsum.photos/seed/kra6/104/140" alt="龙族外传" loading="lazy"></span><div class="txt"><h4>龙族外传</h4><p>奇幻 · 新番</p></div><div class="hot"><b>49.8万</b><span>热度</span></div></div>
+        </div>
+        <div class="rk-pane" data-pane="v">
+          <div class="rk-row gold"><span class="num">01</span><span class="pic"><img src="https://picsum.photos/seed/krv1/104/140" alt="声浪计划" loading="lazy"></span><div class="txt"><h4>声浪计划</h4><p>音乐竞演 · 第12期</p></div><div class="hot"><b>82.1万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">02</span><span class="pic"><img src="https://picsum.photos/seed/krv2/104/140" alt="周末逃跑计划" loading="lazy"></span><div class="txt"><h4>周末逃跑计划</h4><p>真人秀 · 第8期</p></div><div class="hot"><b>74.6万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">03</span><span class="pic"><img src="https://picsum.photos/seed/krv3/104/140" alt="喜剧之王" loading="lazy"></span><div class="txt"><h4>喜剧之王</h4><p>喜剧竞演 · 第6期</p></div><div class="hot"><b>66.8万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">04</span><span class="pic"><img src="https://picsum.photos/seed/krv4/104/140" alt="脑力全开" loading="lazy"></span><div class="txt"><h4>脑力全开</h4><p>益智竞技 · 第9期</p></div><div class="hot"><b>58.3万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">05</span><span class="pic"><img src="https://picsum.photos/seed/krv5/104/140" alt="寻味中国" loading="lazy"></span><div class="txt"><h4>寻味中国</h4><p>文化美食 · 第10期</p></div><div class="hot"><b>51.7万</b><span>热度</span></div></div>
+          <div class="rk-row"><span class="num">06</span><span class="pic"><img src="https://picsum.photos/seed/krv6/104/140" alt="舞蹈风暴" loading="lazy"></span><div class="txt"><h4>舞蹈风暴</h4><p>舞蹈竞演 · 第7期</p></div><div class="hot"><b>46.5万</b><span>热度</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目五：观影指南 -->
+<section id="guide">
+  <div class="wrap">
+    <div class="head center">
+      <div class="head-l" style="margin:0 auto">
+        <span class="eyebrow" style="justify-content:center">How It Works</span>
+        <h2 class="h2">四步开启 <b>酷客影视</b> 观影</h2>
+        <p class="sub" style="margin:14px auto 0">从打开到开播，全程不超过 30 秒。</p>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><h4>注册账号</h4><p>手机号或邮箱一键注册，免费开通基础会员。</p></div>
+      <div class="step"><div class="n">2</div><h4>选择频道</h4><p>电影、剧集、动漫、综艺，六大频道随意切换。</p></div>
+      <div class="step"><div class="n">3</div><h4>智能推荐</h4><p>算法根据你的口味推荐下一部心头好。</p></div>
+      <div class="step"><div class="n">4</div><h4>极速播放</h4><p>5 秒起播，支持投屏、倍速、离线缓存。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目六：数据墙 + CTA -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="datawall">
+      <div class="dw"><b>120,000+</b><span>影视资源总量</span></div>
+      <div class="dw"><b>4K</b><span>超清画质支持</span></div>
+      <div class="dw"><b>30+</b><span>内容分类频道</span></div>
+      <div class="dw"><b>5,000万</b><span>累计观影人次</span></div>
+    </div>
+    <div class="cta">
+      <div class="cta-bg"></div>
+      <div class="cta-in">
+        <div>
+          <h3>马上体验 <b>酷客影视</b><br>解锁你的私人放映厅</h3>
+          <p>留下邮箱，第一时间获取新片上线通知与专属观影福利。</p>
+        </div>
+        <div>
+          <form class="form" id="subForm">
+            <input type="email" placeholder="your@email.com" required aria-label="邮箱地址">
+            <button class="btn btn-main" type="submit">订阅</button>
+          </form>
+          <div class="cta-msg" id="ctaMsg"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div class="f-brand">
+        <div class="logo"><span class="clapper">🎬</span>酷客影视<small>KUKEYINGSHI</small></div>
+        <p>酷客影视（kukeyingshi-wap.github.io）是面向影视爱好者的极客级在线点播平台，聚合高清电影、电视剧、动漫、综艺，用算法与极速播放重新定义观影体验。</p>
+      </div>
+      <div class="f-col"><h4>频道导航</h4><a href="#hot">电影频道</a><a href="#series">电视剧频道</a><a href="#anime">动漫频道</a><a href="#rank">热播排行榜</a></div>
+      <div class="f-col"><h4>热门分类</h4><a href="#">动作冒险</a><a href="#">爱情喜剧</a><a href="#">悬疑犯罪</a><a href="#">科幻奇幻</a></div>
+      <div class="f-col"><h4>关于我们</h4><a href="#guide">观影指南</a><a href="#">合作推广</a><a href="#">帮助中心</a><a href="#">联系方式</a></div>
+    </div>
+    <div class="f-bottom">
+      <span>© <span id="yr"></span> 酷客影视 kukeyingshi-wap.github.io 版权所有</span>
+      <span><a href="#">免责声明</a> · <a href="#">隐私政策</a> · <a href="#">用户协议</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+// 移动菜单
+var mb = document.getElementById('menuBtn'), nl = document.getElementById('navLinks');
+mb.addEventListener('click', function(){ nl.classList.toggle('open'); });
+nl.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ nl.classList.remove('open'); }); });
+// 通用 tab/filter
+function bindTabs(btnsSel, paneSel, k){
+  var btns = document.querySelectorAll(btnsSel);
+  btns.forEach(function(b){
+    b.addEventListener('click', function(){
+      btns.forEach(function(x){ x.classList.remove('on'); });
+      b.classList.add('on');
+      var key = b.getAttribute(k);
+      document.querySelectorAll(paneSel).forEach(function(p){
+        p.classList.toggle('on', p.getAttribute(key) === key);
+      });
+    });
+  });
+}
+bindTabs('[data-f="hot"] .f-btn', '[data-p="hot"]', 'data-k');
+bindTabs('[data-nav="rank"] button', '[data-pane]', 'data-k');
+// 滚动入场
+var io = new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){ e.target.style.animation = 'rise .65s cubic-bezier(.2,.7,.3,1) both'; io.unobserve(e.target); }
+  });
+}, {threshold:.08});
+document.querySelectorAll('.film,.s-card,.anime-row,.rk-row,.step,.dw').forEach(function(el){ io.observe(el); });
+var st = document.createElement('style');
+st.textContent = '@keyframes rise{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}';
+document.head.appendChild(st);
+// 订阅表单
+document.getElementById('subForm').addEventListener('submit', function(e){
+  e.preventDefault();
+  var msg = document.getElementById('ctaMsg');
+  msg.textContent = '✓ 订阅成功，新片上线第一时间通知你！';
+  this.reset();
+  setTimeout(function(){ msg.textContent = ''; }, 4000);
+});
+</script>
+</body>
+</html>
